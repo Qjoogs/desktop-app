@@ -1,4 +1,5 @@
 ﻿using MusicalChannels.Forms;
+using MusicalChannels.Forms.ArtistForms;
 using MusicalChannels.Forms.UserControls;
 using MusicalChannels.Models.Data;
 using MusicalChannels.Models.Services;
@@ -57,11 +58,6 @@ namespace MusicalChannels
             {
                 ShowButtons();
             }
-
-            artistsBTN.Hide();
-            filtersBTN.Hide();
-            usersBTN.Hide();
-            artistsEditBTN.Hide();
         }
         private void HideButtons()
         {
@@ -113,6 +109,16 @@ namespace MusicalChannels
         private void channeleditBTN_Click(object sender, EventArgs e)
         {
             LoadForms(new ShowChannelsAdminForm(mainPanel));
+        }
+
+        private void artistsBTN_Click(object sender, EventArgs e)
+        {
+            LoadForms(new ShowArtistsForm());
+        }
+
+        private void artistsEditBTN_Click(object sender, EventArgs e)
+        {
+            LoadForms(new ShowArtistsAdminForm(mainPanel));
         }
 
 

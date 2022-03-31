@@ -11,28 +11,29 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace MusicalChannels.Forms.ChannelForms
+namespace MusicalChannels.Forms.ArtistForms
 {
-    public partial class EditChannelForm : Form
+    public partial class EditArtistForm : Form
     {
-        Channel currChannel;
+        Artist currArtist;
         Panel mainPanel;
-        public EditChannelForm(Channel channel, Panel panel)
+        public EditArtistForm(Artist artist, Panel panel)
         {
             InitializeComponent();
-            currChannel = channel;
+            currArtist = artist;
             mainPanel = panel;
         }
 
         string filePath = null;
         string imgName = null;
-        private void EditChannelForm_Load(object sender, EventArgs e)
+
+        private void EditArtistForm_Load(object sender, EventArgs e)
         {
-            addChannelNameTextBox.Text = currChannel.Name;
+            addArtistNameTextBox.Text = currArtist.Name;
             try
             {
-                addPictureBox.Image = Image.FromFile(currChannel.ChannelLogo);
-                filePath = currChannel.ChannelLogo;
+                addPictureBox.Image = Image.FromFile(currArtist.ImageURL);
+                filePath = currArtist.ImageURL;
             }
             catch
             {
@@ -61,6 +62,7 @@ namespace MusicalChannels.Forms.ChannelForms
 
         private void addSaveButton_Click(object sender, EventArgs e)
         {
+
             if (insertButtonClicked)
             {
                 string picsFile = SettingsReader.GetPicsURL() + @"\";
@@ -68,24 +70,24 @@ namespace MusicalChannels.Forms.ChannelForms
             }
 
 
-            foreach (var item in DataService.GetChannels())
+            foreach (var item in DataService.GetArtists())
             {
-                if (item.Name == currChannel.Name)
+                if (item.Name == currArtist.Name)
                 {
-                    item.Name = addChannelNameTextBox.Text;
-                    DataService.UpdateChannel(item);
+                    item.Name = addArtistNameTextBox.Text;
+                    DataService.UpdateArtist(item);
                 }
             }
 
-            MessageBox.Show("The channel is saved");
+            MessageBox.Show("The artist is saved");
 
             Redirect();
         }
 
         private void deleteButton_Click(object sender, EventArgs e)
         {
-            DataService.RemoveChannel(currChannel);
-            MessageBox.Show("The channel is deleted");
+            DataService.RemoveArtist(currArtist);
+            MessageBox.Show("The artist is deleted");
 
             Redirect();
         }
@@ -104,5 +106,6 @@ namespace MusicalChannels.Forms.ChannelForms
             this.mainPanel.Tag = f;
             f.Show();
         }
+
     }
 }

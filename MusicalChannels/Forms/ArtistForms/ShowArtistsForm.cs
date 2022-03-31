@@ -11,34 +11,36 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace MusicalChannels.Forms
+namespace MusicalChannels.Forms.ArtistForms
 {
-    public partial class ShowChannelsForm : Form
+    public partial class ShowArtistsForm : Form
     {
-        public ShowChannelsForm()
+        public ShowArtistsForm()
         {
             InitializeComponent();
         }
+
+
         ChannelsUserControl control;
-        private void LoadChannels()
+        private void LoadArtists()
         {
-            var findChannel = DataService.GetChannels().Where(x => x.SongId != null);
-            var distinctChannel = new List<Channel>();
+            var findArtists = DataService.GetArtists().Where(x => x.SongId != null);
+            var distinctArtist = new List<Artist>();
 
             using (DBContext context = new DBContext())
             {
 
-                foreach (Channel channel in findChannel)
+                foreach (Artist artist in findArtists)
                 {
-                    if (!distinctChannel.Any(x => x.Name == channel.Name))
+                    if (!distinctArtist.Any(x => x.Name == artist.Name))
                     {
                         var currControl = new ChannelsUserControl();
-                        currControl.ChannelName = channel.Name;
-                        currControl.PictureBox = channel.ChannelLogo;
+                        currControl.ChannelName = artist.Name;
+                        currControl.PictureBox = artist.ImageURL;
                         currControl.ControlClicked += new EventHandler(ClickedChannel);
                         currControl.Margin = new Padding(30, 10, 50, 30);
                         flowLayoutPanel1.Controls.Add(currControl);
-                        distinctChannel.Add(channel);
+                        distinctArtist.Add(artist);
                     }
                 }
             }
@@ -47,7 +49,7 @@ namespace MusicalChannels.Forms
 
         private void LoadSongs()
         {
-            var findChannel = DataService.GetChannels().Where(x => x.Name == control.ChannelName).Where(x => x.SongId != null);
+            var findChannel = DataService.GetArtists().Where(x => x.Name == control.ChannelName).Where(x => x.SongId != null);
 
             using (DBContext context = new DBContext())
             {
@@ -79,10 +81,9 @@ namespace MusicalChannels.Forms
             MessageBox.Show("Song: " + song.ChannelName);
         }
 
-
-        private void ShowChannelsForm_Load(object sender, EventArgs e)
+        private void ShowArtistsForm_Load(object sender, EventArgs e)
         {
-            LoadChannels();
+            LoadArtists();
         }
     }
 }

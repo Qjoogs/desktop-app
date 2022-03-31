@@ -79,6 +79,7 @@ namespace MusicalChannels
             this.artistsEditBTN.TabIndex = 12;
             this.artistsEditBTN.Text = "Artists";
             this.artistsEditBTN.UseVisualStyleBackColor = true;
+            this.artistsEditBTN.Click += new System.EventHandler(this.artistsEditBTN_Click);
             // 
             // changeSide
             // 
@@ -177,6 +178,7 @@ namespace MusicalChannels
             this.artistsBTN.TabIndex = 6;
             this.artistsBTN.Text = "Artists";
             this.artistsBTN.UseVisualStyleBackColor = true;
+            this.artistsBTN.Click += new System.EventHandler(this.artistsBTN_Click);
             // 
             // channelsBTN
             // 

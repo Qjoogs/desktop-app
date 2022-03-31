@@ -54,6 +54,7 @@ namespace MusicalChannels.Forms
                 string picsFile = SettingsReader.GetPicsURL() + @"\";
 
                 File.Copy(filePath, picsFile + imgName);
+                channel.ChannelLogo = picsFile + imgName;
             }
             else
             {

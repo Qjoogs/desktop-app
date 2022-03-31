@@ -12,40 +12,40 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace MusicalChannels.Forms
+namespace MusicalChannels.Forms.ArtistForms
 {
-    public partial class ShowChannelsAdminForm : Form
+    public partial class ShowArtistsAdminForm : Form
     {
         Panel mainPanel;
-        public ShowChannelsAdminForm(Panel panel)
+        public ShowArtistsAdminForm(Panel panel)
         {
             InitializeComponent();
             mainPanel = panel;
         }
 
-        private void ShowChannelsAdminForm_Load(object sender, EventArgs e)
+        private void ShowArtistsAdminForm_Load(object sender, EventArgs e)
         {
-            LoadChannels();
+            LoadArtists();
         }
 
-        private void LoadChannels()
+        private void LoadArtists()
         {
-            var findChannel = DataService.GetChannels().Where(x => x.SongId != null);
-            var distinctChannel = new List<Channel>();
+            var findChannel = DataService.GetArtists().Where(x => x.SongId != null);
+            var distinctArtist = new List<Artist>();
 
             using (DBContext context = new DBContext())
             {
-                foreach (Channel channel in findChannel)
+                foreach (Artist artist in findChannel)
                 {
-                    if (!distinctChannel.Any(x => x.Name == channel.Name))
+                    if (!distinctArtist.Any(x => x.Name == artist.Name))
                     {
                         var currControl = new ChannelsUserControl();
-                        currControl.ChannelName = channel.Name;
-                        currControl.PictureBox = channel.ChannelLogo;
+                        currControl.ChannelName = artist.Name;
+                        currControl.PictureBox = artist.ImageURL;
                         currControl.ControlClicked += new EventHandler(ClickedSong);
                         currControl.Margin = new Padding(30, 10, 50, 30);
                         flowLayoutPanel1.Controls.Add(currControl);
-                        distinctChannel.Add(channel);
+                        distinctArtist.Add(artist);
                     }
                 }
             }
@@ -55,7 +55,7 @@ namespace MusicalChannels.Forms
         {
             var channel = (ChannelsUserControl)sender;
 
-            var findChannel = DataService.GetChannels().Where(x => x.Name == channel.ChannelName && x.SongId!=null).FirstOrDefault();
+            var findChannel = DataService.GetArtists().Where(x => x.Name == channel.ChannelName).FirstOrDefault();
 
 
             if (mainPanel.Controls.Count > 0)
@@ -64,7 +64,7 @@ namespace MusicalChannels.Forms
             }
 
             this.mainPanel.Controls.Clear();
-            EditChannelForm f = new EditChannelForm(findChannel, mainPanel);
+            EditArtistForm f = new EditArtistForm(findChannel, mainPanel);
             f.TopLevel = false;
             f.Dock = DockStyle.Fill;
             this.mainPanel.Controls.Add(f);
@@ -81,7 +81,7 @@ namespace MusicalChannels.Forms
             }
 
             this.mainPanel.Controls.Clear();
-            AddChannelForm f = new AddChannelForm(mainPanel);
+            AddArtistForm f = new AddArtistForm(mainPanel);
             f.TopLevel = false;
             f.Dock = DockStyle.Fill;
             this.mainPanel.Controls.Add(f);

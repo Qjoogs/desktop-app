@@ -9,6 +9,13 @@ namespace MusicalChannels.Models.Data
 {
     public class Song
     {
+        public Song()
+        {
+            Channels = new List<Channel>();
+            Artists = new List<Artist>();
+            SongTypes = new List<SongType>();
+        }
+
         [Key]
         public int Id { get; set; }
         public string Name { get; set; }

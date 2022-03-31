@@ -11,36 +11,19 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace MusicalChannels.Forms.ChannelForms
+namespace MusicalChannels.Forms.ArtistForms
 {
-    public partial class EditChannelForm : Form
+    public partial class AddArtistForm : Form
     {
-        Channel currChannel;
         Panel mainPanel;
-        public EditChannelForm(Channel channel, Panel panel)
+        public AddArtistForm(Panel panel)
         {
             InitializeComponent();
-            currChannel = channel;
             mainPanel = panel;
         }
 
         string filePath = null;
         string imgName = null;
-        private void EditChannelForm_Load(object sender, EventArgs e)
-        {
-            addChannelNameTextBox.Text = currChannel.Name;
-            try
-            {
-                addPictureBox.Image = Image.FromFile(currChannel.ChannelLogo);
-                filePath = currChannel.ChannelLogo;
-            }
-            catch
-            {
-                MessageBox.Show("The image is not found");
-            }
-        }
-
-        bool insertButtonClicked = false;
 
         private void addInsertButton_Click(object sender, EventArgs e)
         {
@@ -54,55 +37,45 @@ namespace MusicalChannels.Forms.ChannelForms
                     filePath = openFileDialog.FileName;
                     imgName = filePath.Substring(filePath.LastIndexOf('\\') + 1).ToString();
                     addPictureBox.Image = Image.FromFile(filePath);
-                    insertButtonClicked = true;
                 }
             }
         }
 
         private void addSaveButton_Click(object sender, EventArgs e)
         {
-            if (insertButtonClicked)
+            Artist artist = new Artist();
+
+            artist.Name = addArtistNameTextBox.Text;
+            artist.ImageURL = filePath;
+
+            var (isTrue, error) = DataService.AddArtist(artist);
+
+            if (isTrue)
             {
                 string picsFile = SettingsReader.GetPicsURL() + @"\";
+
                 File.Copy(filePath, picsFile + imgName);
+                artist.ImageURL = picsFile + imgName;
             }
-
-
-            foreach (var item in DataService.GetChannels())
+            else
             {
-                if (item.Name == currChannel.Name)
-                {
-                    item.Name = addChannelNameTextBox.Text;
-                    DataService.UpdateChannel(item);
-                }
+                MessageBox.Show(error);
             }
 
-            MessageBox.Show("The channel is saved");
 
-            Redirect();
-        }
-
-        private void deleteButton_Click(object sender, EventArgs e)
-        {
-            DataService.RemoveChannel(currChannel);
-            MessageBox.Show("The channel is deleted");
-
-            Redirect();
-        }
-
-        private void Redirect()
-        {
             if (this.mainPanel.Controls.Count > 0)
             {
                 this.mainPanel.Controls.RemoveAt(0);
             }
             this.mainPanel.Controls.Clear();
-            ShowChannelsAdminForm f = new ShowChannelsAdminForm(mainPanel);
+            ShowArtistsAdminForm f = new ShowArtistsAdminForm(mainPanel);
             f.TopLevel = false;
             f.Dock = DockStyle.Fill;
             this.mainPanel.Controls.Add(f);
             this.mainPanel.Tag = f;
             f.Show();
+
+            MessageBox.Show("The artist is added");
         }
     }
 }

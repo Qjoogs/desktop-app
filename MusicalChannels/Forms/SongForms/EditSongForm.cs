@@ -35,6 +35,7 @@ namespace MusicalChannels.Forms
             addArtistSongTextBox.Text = artist.Name;
             monthCalendar1.SetDate(currSong.ReleaseDate);
             addDurationTextBox.Text = currSong.Duration.ToString();
+            addChannelSongTextBox.Text = DataService.GetChannels().Where(x => x.SongId == currSong.Id).FirstOrDefault().Name;
             try
             {
                 addPictureBox.Image = Image.FromFile(currSong.ImageURL);
@@ -74,19 +75,20 @@ namespace MusicalChannels.Forms
             
 
             var currArtist = DataService.GetArtists().Where(x => x.Name == addArtistSongTextBox.Text).FirstOrDefault();
+            var currChannel = DataService.GetChannels().Where(x => x.Name == addChannelSongTextBox.Text).FirstOrDefault();
 
 
-
-            if (currArtist != null)
+            if (currArtist != null && currChannel!=null)
             {
 
                 if (insertButtonClicked)
                 {
                     string picsFile = SettingsReader.GetPicsURL() + @"\";
                     File.Copy(filePath, picsFile + imgName);
+                    song.ImageURL = picsFile + imgName;
                 }
 
-
+                
                 Artist artist = new Artist();
                 artist.Name = currArtist.Name;
                 artist.Age = currArtist.Age;
@@ -94,22 +96,28 @@ namespace MusicalChannels.Forms
                 artist.ImageURL = currArtist.ImageURL;
                 artist.Song = song;
 
+                Channel channel = new Channel();
+                channel.Name = currChannel.Name;
+                channel.ChannelLogo = currChannel.ChannelLogo;
+                channel.Song = song;
 
-              
 
-                artist.Song = song;
-
+                song.Artists.Add(artist);
+                song.Channels.Add(channel);
                 
                 DataService.RemoveSong(currSong);
-                DataService.AddArtistSong(artist);
                 DataService.AddSong(song);
                 MessageBox.Show("The song is saved");
 
                 Redirect();
             }
-            else
+            else if(currArtist==null)
             {
                 MessageBox.Show("The artist doesn't exists");
+            }
+            else if (currChannel == null)
+            {
+                MessageBox.Show("The channel doesn't exists");
             }
 
            

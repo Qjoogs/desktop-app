@@ -166,6 +166,30 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Forms\ArtistForms\AddArtistForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\ArtistForms\AddArtistForm.Designer.cs">
+      <DependentUpon>AddArtistForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\ArtistForms\EditArtistForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\ArtistForms\EditArtistForm.Designer.cs">
+      <DependentUpon>EditArtistForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\ArtistForms\ShowArtistsAdminForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\ArtistForms\ShowArtistsAdminForm.Designer.cs">
+      <DependentUpon>ShowArtistsAdminForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\ArtistForms\ShowArtistsForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\ArtistForms\ShowArtistsForm.Designer.cs">
+      <DependentUpon>ShowArtistsForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\ChannelForms\AddChannelForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -254,6 +278,18 @@
     <Compile Include="Models\Services\UserServices.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Forms\ArtistForms\AddArtistForm.resx">
+      <DependentUpon>AddArtistForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\ArtistForms\EditArtistForm.resx">
+      <DependentUpon>EditArtistForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\ArtistForms\ShowArtistsAdminForm.resx">
+      <DependentUpon>ShowArtistsAdminForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\ArtistForms\ShowArtistsForm.resx">
+      <DependentUpon>ShowArtistsForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\ChannelForms\AddChannelForm.resx">
       <DependentUpon>AddChannelForm.cs</DependentUpon>
     </EmbeddedResource>

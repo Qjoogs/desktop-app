@@ -38,9 +38,9 @@ namespace MusicalChannels.Forms
             this.addArtistSongLabel = new System.Windows.Forms.Label();
             this.addDurationTextBox = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
-            this.label2 = new System.Windows.Forms.Label();
             this.monthCalendar1 = new System.Windows.Forms.MonthCalendar();
+            this.addChannelSongTextBox = new System.Windows.Forms.TextBox();
+            this.label2 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.addPictureBox)).BeginInit();
             this.SuspendLayout();
             // 
@@ -129,41 +129,38 @@ namespace MusicalChannels.Forms
             this.label1.TabIndex = 9;
             this.label1.Text = "Duration";
             // 
-            // comboBox1
-            // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Items.AddRange(new object[] {
-            "Chalga",
-            "Ne chalga"});
-            this.comboBox1.Location = new System.Drawing.Point(117, 355);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(121, 21);
-            this.comboBox1.TabIndex = 10;
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label2.Location = new System.Drawing.Point(135, 315);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(68, 24);
-            this.label2.TabIndex = 11;
-            this.label2.Text = "Genre";
-            // 
             // monthCalendar1
             // 
             this.monthCalendar1.Location = new System.Drawing.Point(607, 344);
             this.monthCalendar1.Name = "monthCalendar1";
             this.monthCalendar1.TabIndex = 12;
             // 
+            // addChannelSongTextBox
+            // 
+            this.addChannelSongTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.addChannelSongTextBox.Location = new System.Drawing.Point(79, 358);
+            this.addChannelSongTextBox.Name = "addChannelSongTextBox";
+            this.addChannelSongTextBox.Size = new System.Drawing.Size(199, 31);
+            this.addChannelSongTextBox.TabIndex = 14;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label2.Location = new System.Drawing.Point(103, 310);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(149, 24);
+            this.label2.TabIndex = 13;
+            this.label2.Text = "Channel Name";
+            // 
             // AddSongForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(862, 524);
-            this.Controls.Add(this.monthCalendar1);
+            this.Controls.Add(this.addChannelSongTextBox);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.comboBox1);
+            this.Controls.Add(this.monthCalendar1);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.addDurationTextBox);
             this.Controls.Add(this.addArtistSongTextBox);
@@ -194,8 +191,8 @@ namespace MusicalChannels.Forms
         private System.Windows.Forms.Label addArtistSongLabel;
         private System.Windows.Forms.TextBox addDurationTextBox;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.ComboBox comboBox1;
-        private System.Windows.Forms.Label label2;
         private System.Windows.Forms.MonthCalendar monthCalendar1;
+        private System.Windows.Forms.TextBox addChannelSongTextBox;
+        private System.Windows.Forms.Label label2;
     }
 }

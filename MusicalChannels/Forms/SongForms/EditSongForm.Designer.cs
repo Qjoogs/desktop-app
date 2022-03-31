@@ -31,8 +31,6 @@ namespace MusicalChannels.Forms
         {
             this.addDeleteButton = new System.Windows.Forms.Button();
             this.monthCalendar1 = new System.Windows.Forms.MonthCalendar();
-            this.label2 = new System.Windows.Forms.Label();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
             this.addDurationTextBox = new System.Windows.Forms.TextBox();
             this.addArtistSongTextBox = new System.Windows.Forms.TextBox();
@@ -42,6 +40,8 @@ namespace MusicalChannels.Forms
             this.addTextBox = new System.Windows.Forms.TextBox();
             this.addLabelName = new System.Windows.Forms.Label();
             this.addPictureBox = new System.Windows.Forms.PictureBox();
+            this.addChannelSongTextBox = new System.Windows.Forms.TextBox();
+            this.label2 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.addPictureBox)).BeginInit();
             this.SuspendLayout();
             // 
@@ -61,27 +61,6 @@ namespace MusicalChannels.Forms
             this.monthCalendar1.Location = new System.Drawing.Point(602, 337);
             this.monthCalendar1.Name = "monthCalendar1";
             this.monthCalendar1.TabIndex = 26;
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label2.Location = new System.Drawing.Point(130, 308);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(68, 24);
-            this.label2.TabIndex = 25;
-            this.label2.Text = "Genre";
-            // 
-            // comboBox1
-            // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Items.AddRange(new object[] {
-            "Chalga",
-            "Ne chalga"});
-            this.comboBox1.Location = new System.Drawing.Point(112, 348);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(121, 21);
-            this.comboBox1.TabIndex = 24;
             // 
             // label1
             // 
@@ -168,15 +147,33 @@ namespace MusicalChannels.Forms
             this.addPictureBox.TabIndex = 14;
             this.addPictureBox.TabStop = false;
             // 
+            // addChannelSongTextBox
+            // 
+            this.addChannelSongTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.addChannelSongTextBox.Location = new System.Drawing.Point(73, 352);
+            this.addChannelSongTextBox.Name = "addChannelSongTextBox";
+            this.addChannelSongTextBox.Size = new System.Drawing.Size(199, 31);
+            this.addChannelSongTextBox.TabIndex = 29;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label2.Location = new System.Drawing.Point(97, 304);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(149, 24);
+            this.label2.TabIndex = 28;
+            this.label2.Text = "Channel Name";
+            // 
             // EditSongForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(862, 524);
+            this.Controls.Add(this.addChannelSongTextBox);
+            this.Controls.Add(this.label2);
             this.Controls.Add(this.addDeleteButton);
             this.Controls.Add(this.monthCalendar1);
-            this.Controls.Add(this.label2);
-            this.Controls.Add(this.comboBox1);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.addDurationTextBox);
             this.Controls.Add(this.addArtistSongTextBox);
@@ -200,8 +197,6 @@ namespace MusicalChannels.Forms
 
         private System.Windows.Forms.Button addDeleteButton;
         private System.Windows.Forms.MonthCalendar monthCalendar1;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.ComboBox comboBox1;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox addDurationTextBox;
         private System.Windows.Forms.TextBox addArtistSongTextBox;
@@ -211,5 +206,7 @@ namespace MusicalChannels.Forms
         private System.Windows.Forms.TextBox addTextBox;
         private System.Windows.Forms.Label addLabelName;
         private System.Windows.Forms.PictureBox addPictureBox;
+        private System.Windows.Forms.TextBox addChannelSongTextBox;
+        private System.Windows.Forms.Label label2;
     }
 }

@@ -54,9 +54,9 @@ namespace MusicalChannels.Models.Services
             string error = null;
             using (DBContext context = new DBContext())
             {
-                var currSong = context.Songs.Where(x => x.Name == channel.Name).FirstOrDefault();
+                var currChannel = context.Channels.Where(x => x.Name == channel.Name && x.SongId!=null).FirstOrDefault();
 
-                if (currSong == null)
+                if (currChannel == null)
                 {
                     context.Channels.Add(channel);
                     context.SaveChanges();
@@ -69,7 +69,26 @@ namespace MusicalChannels.Models.Services
             }
             return (isTrue, error);
         }
-        
+
+        public static void UpdateChannel(Channel channel)
+        {
+            using (DBContext context = new DBContext())
+            {
+                context.Update(channel);
+                context.SaveChanges();
+            }
+        }
+
+        public static void UpdateArtist(Artist artist)
+        {
+            using (DBContext context = new DBContext())
+            {
+                context.Update(artist);
+                context.SaveChanges();
+            }
+        }
+
+
         public static (bool, string) AddSong(Song song)
         {
             bool isTrue = false;
@@ -115,33 +134,25 @@ namespace MusicalChannels.Models.Services
             return (isTrue, error);
         }
 
-        public static (bool, string) AddArtistSong(Artist artist)
-        {
-            bool isTrue = false;
-            string error = null;
-
-            using (DBContext context = new DBContext())
-            {
-                var currArtist = context.Artist.Where(x => x.Name == artist.Name).FirstOrDefault();
-
-                if (currArtist != null)
-                {
-                    context.Artist.Add(artist);
-                    context.SaveChanges();
-                    isTrue = true;
-                }
-                else
-                {
-                    error = "the artist doesn't exists";
-                }
-            }
-            return (isTrue, error);
-        }
-
+      
         public static void RemoveSong(Song song)
         {
             using(DBContext context = new DBContext())
             {
+                foreach (Artist artist in context.Artist)
+                {
+                    if(artist.SongId == song.Id)
+                    {
+                        context.Remove(artist);
+                    }
+                }
+                foreach (Channel channel in context.Channels)
+                {
+                    if (channel.SongId == song.Id)
+                    {
+                        context.Remove(channel);
+                    }
+                }
                 context.Remove(song);
                 context.SaveChanges();
             }
@@ -152,6 +163,15 @@ namespace MusicalChannels.Models.Services
             using(DBContext context = new DBContext())
             {
                 context.Remove(channel);
+                context.SaveChanges();
+            }
+        }
+
+        public static void RemoveArtist(Artist artist)
+        {
+            using (DBContext context = new DBContext())
+            {
+                context.Remove(artist);
                 context.SaveChanges();
             }
         }
