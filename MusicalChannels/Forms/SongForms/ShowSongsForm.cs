@@ -1,5 +1,6 @@
 ﻿using MusicalChannels.Forms.UserControls;
 using MusicalChannels.Models.Data;
+using MusicalChannels.Models.Services;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -30,12 +31,20 @@ namespace MusicalChannels.Forms
 
                 foreach (Song song in context.Songs)
                 {
-                    var currControl = new ChannelsUserControl();
-                    currControl.ChannelName = song.Name;
-                    currControl.PictureBox = song.ImageURL;
-                    currControl.ControlClicked += new EventHandler(ClickedSong);
-                    currControl.Margin = new Padding(30, 10, 50, 30);
-                    flowLayoutPanel1.Controls.Add(currControl);
+                    var artist = DataService.GetArtists().Where(x => x.SongId == song.Id).FirstOrDefault();
+                    if (artist != null)
+                    {
+                        var currControl = new ChannelsUserControl();
+                        currControl.ChannelName = song.Name;
+                        currControl.PictureBox = song.ImageURL;
+                        currControl.ControlClicked += new EventHandler(ClickedSong);
+                        currControl.Margin = new Padding(30, 10, 50, 30);
+                        flowLayoutPanel1.Controls.Add(currControl);
+                    }
+                    else
+                    {
+                        DataService.RemoveSong(song);
+                    }
                 }
             }
         }

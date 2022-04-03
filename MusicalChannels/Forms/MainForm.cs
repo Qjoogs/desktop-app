@@ -1,6 +1,7 @@
 ﻿using MusicalChannels.Forms;
 using MusicalChannels.Forms.ArtistForms;
 using MusicalChannels.Forms.UserControls;
+using MusicalChannels.Forms.UserForms;
 using MusicalChannels.Models.Data;
 using MusicalChannels.Models.Services;
 using MusicalChannels.Properties;
@@ -119,6 +120,11 @@ namespace MusicalChannels
         private void artistsEditBTN_Click(object sender, EventArgs e)
         {
             LoadForms(new ShowArtistsAdminForm(mainPanel));
+        }
+
+        private void usersBTN_Click(object sender, EventArgs e)
+        {
+            LoadForms(new ShowUserAdminForm(mainPanel));
         }
 
 

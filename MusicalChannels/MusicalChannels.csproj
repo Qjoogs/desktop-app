@@ -262,6 +262,18 @@
     <Compile Include="Forms\UserControls\SongsAdminUserControl.Designer.cs">
       <DependentUpon>SongsAdminUserControl.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\UserControls\UsersAdminUserControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\UserControls\UsersAdminUserControl.Designer.cs">
+      <DependentUpon>UsersAdminUserControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\UserForms\ShowUserAdminForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\UserForms\ShowUserAdminForm.Designer.cs">
+      <DependentUpon>ShowUserAdminForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\20220329204416_init.cs" />
     <Compile Include="Migrations\20220329204416_init.designer.cs">
       <DependentUpon>20220329204416_init.cs</DependentUpon>
@@ -325,6 +337,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\UserControls\SongsAdminUserControl.resx">
       <DependentUpon>SongsAdminUserControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\UserControls\UsersAdminUserControl.resx">
+      <DependentUpon>UsersAdminUserControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\UserForms\ShowUserAdminForm.resx">
+      <DependentUpon>ShowUserAdminForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

@@ -1,7 +1,7 @@
 ﻿
-namespace MusicalChannels.Forms.ArtistForms
+namespace MusicalChannels.Forms.UserForms
 {
-    partial class ShowArtistsForm
+    partial class ShowUserAdminForm
     {
         /// <summary>
         /// Required designer variable.
@@ -38,19 +38,19 @@ namespace MusicalChannels.Forms.ArtistForms
             this.flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.flowLayoutPanel1.Location = new System.Drawing.Point(0, 0);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(800, 450);
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(862, 524);
             this.flowLayoutPanel1.TabIndex = 0;
             // 
-            // ShowArtistsForm
+            // ShowUserAdminForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(862, 524);
             this.Controls.Add(this.flowLayoutPanel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Name = "ShowArtistsForm";
-            this.Text = "ShowArtistsForm";
-            this.Load += new System.EventHandler(this.ShowArtistsForm_Load);
+            this.Name = "ShowUserAdminForm";
+            this.Text = "ShowUserAdminForm";
+            this.Load += new System.EventHandler(this.ShowUserAdminForm_Load);
             this.ResumeLayout(false);
 
         }

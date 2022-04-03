@@ -162,6 +162,11 @@ namespace MusicalChannels.Models.Services
         {
             using(DBContext context = new DBContext())
             {
+                var channels = GetChannels().Where(x => x.SongId != null).ToList();
+                foreach (Channel item in channels)
+                {
+                    context.Remove(item);
+                }
                 context.Remove(channel);
                 context.SaveChanges();
             }
@@ -171,6 +176,13 @@ namespace MusicalChannels.Models.Services
         {
             using (DBContext context = new DBContext())
             {
+                
+                var artists = GetArtists().Where(x => x.SongId != null && x.Name == artist.Name).ToList();
+                foreach (Artist item in artists)
+                {
+                    context.Remove(item);
+                }
+
                 context.Remove(artist);
                 context.SaveChanges();
             }

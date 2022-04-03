@@ -34,13 +34,17 @@ namespace MusicalChannels.Forms.ArtistForms
             this.addArtistNameLabel = new System.Windows.Forms.Label();
             this.addInsertButton = new System.Windows.Forms.Button();
             this.addPictureBox = new System.Windows.Forms.PictureBox();
+            this.addAgeTextBox = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.addRichTextBox = new System.Windows.Forms.RichTextBox();
             ((System.ComponentModel.ISupportInitialize)(this.addPictureBox)).BeginInit();
             this.SuspendLayout();
             // 
             // addSaveButton
             // 
             this.addSaveButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.addSaveButton.Location = new System.Drawing.Point(104, 273);
+            this.addSaveButton.Location = new System.Drawing.Point(301, 362);
             this.addSaveButton.Name = "addSaveButton";
             this.addSaveButton.Size = new System.Drawing.Size(129, 61);
             this.addSaveButton.TabIndex = 19;
@@ -51,7 +55,7 @@ namespace MusicalChannels.Forms.ArtistForms
             // addArtistNameTextBox
             // 
             this.addArtistNameTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.addArtistNameTextBox.Location = new System.Drawing.Point(71, 133);
+            this.addArtistNameTextBox.Location = new System.Drawing.Point(80, 85);
             this.addArtistNameTextBox.Name = "addArtistNameTextBox";
             this.addArtistNameTextBox.Size = new System.Drawing.Size(199, 31);
             this.addArtistNameTextBox.TabIndex = 18;
@@ -60,7 +64,7 @@ namespace MusicalChannels.Forms.ArtistForms
             // 
             this.addArtistNameLabel.AutoSize = true;
             this.addArtistNameLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.addArtistNameLabel.Location = new System.Drawing.Point(100, 85);
+            this.addArtistNameLabel.Location = new System.Drawing.Point(109, 37);
             this.addArtistNameLabel.Name = "addArtistNameLabel";
             this.addArtistNameLabel.Size = new System.Drawing.Size(114, 24);
             this.addArtistNameLabel.TabIndex = 17;
@@ -86,11 +90,51 @@ namespace MusicalChannels.Forms.ArtistForms
             this.addPictureBox.TabIndex = 15;
             this.addPictureBox.TabStop = false;
             // 
+            // addAgeTextBox
+            // 
+            this.addAgeTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.addAgeTextBox.Location = new System.Drawing.Point(168, 149);
+            this.addAgeTextBox.Name = "addAgeTextBox";
+            this.addAgeTextBox.Size = new System.Drawing.Size(92, 31);
+            this.addAgeTextBox.TabIndex = 21;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label1.Location = new System.Drawing.Point(76, 149);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(54, 24);
+            this.label1.TabIndex = 20;
+            this.label1.Text = "Age:";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label2.Location = new System.Drawing.Point(35, 204);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(165, 24);
+            this.label2.TabIndex = 22;
+            this.label2.Text = "Artist description";
+            // 
+            // addRichTextBox
+            // 
+            this.addRichTextBox.Location = new System.Drawing.Point(39, 241);
+            this.addRichTextBox.Name = "addRichTextBox";
+            this.addRichTextBox.Size = new System.Drawing.Size(184, 182);
+            this.addRichTextBox.TabIndex = 23;
+            this.addRichTextBox.Text = "";
+            // 
             // AddArtistForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.addRichTextBox);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.addAgeTextBox);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.addSaveButton);
             this.Controls.Add(this.addArtistNameTextBox);
             this.Controls.Add(this.addArtistNameLabel);
@@ -112,5 +156,9 @@ namespace MusicalChannels.Forms.ArtistForms
         private System.Windows.Forms.Label addArtistNameLabel;
         private System.Windows.Forms.Button addInsertButton;
         private System.Windows.Forms.PictureBox addPictureBox;
+        private System.Windows.Forms.TextBox addAgeTextBox;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.RichTextBox addRichTextBox;
     }
 }

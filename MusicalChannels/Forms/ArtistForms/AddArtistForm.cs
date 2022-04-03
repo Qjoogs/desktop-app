@@ -43,39 +43,57 @@ namespace MusicalChannels.Forms.ArtistForms
 
         private void addSaveButton_Click(object sender, EventArgs e)
         {
-            Artist artist = new Artist();
-
-            artist.Name = addArtistNameTextBox.Text;
-            artist.ImageURL = filePath;
-
-            var (isTrue, error) = DataService.AddArtist(artist);
-
-            if (isTrue)
+            int age = 0;
+            if (!int.TryParse(addAgeTextBox.Text, out age))
             {
-                string picsFile = SettingsReader.GetPicsURL() + @"\";
-
-                File.Copy(filePath, picsFile + imgName);
-                artist.ImageURL = picsFile + imgName;
+                MessageBox.Show("Invalid Age");
+            }
+            else if(age < 0 && age > 99)
+            {
+                MessageBox.Show("Invalid Age");
+            }
+            else if(string.IsNullOrWhiteSpace(addArtistNameTextBox.Text))
+            {
+                MessageBox.Show("Invalid Name");
             }
             else
             {
-                MessageBox.Show(error);
+                Artist artist = new Artist();
+
+                artist.Name = addArtistNameTextBox.Text;
+                artist.ImageURL = filePath;
+                artist.Age = age;
+                artist.Description = addAgeTextBox.Text;
+                var (isTrue, error) = DataService.AddArtist(artist);
+
+                if (isTrue)
+                {
+                    string picsFile = SettingsReader.GetPicsURL() + @"\";
+                    string newFileName = picsFile + (int.Parse(new DirectoryInfo(picsFile).GetFiles("*.jpg").Count().ToString()) + 1).ToString() + ".jpg";
+
+                    File.Copy(filePath, newFileName);
+                    artist.ImageURL = picsFile + imgName;
+                }
+                else
+                {
+                    MessageBox.Show(error);
+                }
+
+
+                if (this.mainPanel.Controls.Count > 0)
+                {
+                    this.mainPanel.Controls.RemoveAt(0);
+                }
+                this.mainPanel.Controls.Clear();
+                ShowArtistsAdminForm f = new ShowArtistsAdminForm(mainPanel);
+                f.TopLevel = false;
+                f.Dock = DockStyle.Fill;
+                this.mainPanel.Controls.Add(f);
+                this.mainPanel.Tag = f;
+                f.Show();
+
+                MessageBox.Show("The artist is added");
             }
-
-
-            if (this.mainPanel.Controls.Count > 0)
-            {
-                this.mainPanel.Controls.RemoveAt(0);
-            }
-            this.mainPanel.Controls.Clear();
-            ShowArtistsAdminForm f = new ShowArtistsAdminForm(mainPanel);
-            f.TopLevel = false;
-            f.Dock = DockStyle.Fill;
-            this.mainPanel.Controls.Add(f);
-            this.mainPanel.Tag = f;
-            f.Show();
-
-            MessageBox.Show("The artist is added");
         }
     }
 }

@@ -42,19 +42,21 @@ namespace MusicalChannels.Forms
 
         private void addSaveButton_Click(object sender, EventArgs e)
         {
+            string picsFile = SettingsReader.GetPicsURL() + @"\";
+            string newFileName = picsFile + (int.Parse(new DirectoryInfo(picsFile).GetFiles("*.jpg").Count().ToString()) + 1).ToString() + ".jpg";
+
             Channel channel = new Channel();
-
             channel.Name = addChannelNameTextBox.Text;
-            channel.ChannelLogo = filePath;
+            channel.ChannelLogo = newFileName;
 
+           
             var (isTrue, error) = DataService.AddChannel(channel);
 
             if (isTrue)
             {
-                string picsFile = SettingsReader.GetPicsURL() + @"\";
-
-                File.Copy(filePath, picsFile + imgName);
-                channel.ChannelLogo = picsFile + imgName;
+                File.Copy(filePath, newFileName);
+                channel.ChannelLogo = newFileName;
+                MessageBox.Show("The channel is added");
             }
             else
             {
@@ -74,7 +76,7 @@ namespace MusicalChannels.Forms
             this.mainPanel.Tag = f;
             f.Show();
 
-            MessageBox.Show("The channel is added");
+            
 
         }
 

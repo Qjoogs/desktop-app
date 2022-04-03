@@ -65,5 +65,27 @@ namespace MusicalChannels.Models.Services
             }
             return isTrue;
         }
+
+        public static List<User> GetUsers()
+        {
+            var listOfUsers = new List<User>();
+            using (DBContext context = new DBContext())
+            {
+                foreach (User user in context.Users)
+                {
+                    listOfUsers.Add(user);
+                }
+            }
+            return listOfUsers;
+        }
+
+        public static void UpdateUser(User user)
+        {
+            using (DBContext context = new DBContext())
+            {
+                context.Update(user);
+                context.SaveChanges();
+            }
+        }
     }
 }

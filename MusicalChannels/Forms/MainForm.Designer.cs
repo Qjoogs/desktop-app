@@ -132,6 +132,7 @@ namespace MusicalChannels
             this.usersBTN.TabIndex = 8;
             this.usersBTN.Text = "Users";
             this.usersBTN.UseVisualStyleBackColor = true;
+            this.usersBTN.Click += new System.EventHandler(this.usersBTN_Click);
             // 
             // usernameLabel
             // 

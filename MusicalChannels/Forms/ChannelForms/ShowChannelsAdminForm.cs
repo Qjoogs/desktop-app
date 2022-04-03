@@ -55,7 +55,7 @@ namespace MusicalChannels.Forms
         {
             var channel = (ChannelsUserControl)sender;
 
-            var findChannel = DataService.GetChannels().Where(x => x.Name == channel.ChannelName && x.SongId!=null).FirstOrDefault();
+            var findChannel = DataService.GetChannels().Where(x => x.Name == channel.ChannelName).FirstOrDefault();
 
 
             if (mainPanel.Controls.Count > 0)

@@ -15,12 +15,12 @@ namespace MusicalChannels.Forms
 {
     public partial class ShowSongsAdminForm : Form
     {
-       
+
         Panel mainPanel;
         public ShowSongsAdminForm(Panel panel)
         {
             InitializeComponent();
-           this.mainPanel = panel;
+            this.mainPanel = panel;
         }
 
 
@@ -36,15 +36,23 @@ namespace MusicalChannels.Forms
 
                 foreach (Song song in context.Songs)
                 {
-                    var currControl = new SongsAdminUserControl();
-                    currControl.SongName = song.Name;
-                    currControl.PictureBox = song.ImageURL;
-                    currControl.ReleaseDate = song.ReleaseDate.ToString("dd-MM-yyyy");
-                    currControl.Duration = song.Duration;
-                    currControl.SongArtist = DataService.GetArtists().Where(x => x.SongId == song.Id).FirstOrDefault().Name;
-                    currControl.ControlClicked += new EventHandler(ClickedSong);
-                    currControl.Margin = new Padding(90, 10, 50, 30);
-                    flowLayoutPanel1.Controls.Add(currControl);
+                    var artist = DataService.GetArtists().Where(x => x.SongId == song.Id).FirstOrDefault();
+                    if (artist != null)
+                    {
+                        var currControl = new SongsAdminUserControl();
+                        currControl.SongName = song.Name;
+                        currControl.PictureBox = song.ImageURL;
+                        currControl.ReleaseDate = song.ReleaseDate.ToString("dd-MM-yyyy");
+                        currControl.Duration = song.Duration;
+                        currControl.SongArtist = artist.Name;
+                        currControl.ControlClicked += new EventHandler(ClickedSong);
+                        currControl.Margin = new Padding(90, 10, 50, 30);
+                        flowLayoutPanel1.Controls.Add(currControl);
+                    }
+                    else
+                    {
+                        DataService.RemoveSong(song);
+                    }
                 }
             }
         }

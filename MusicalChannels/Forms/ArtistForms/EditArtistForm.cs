@@ -30,6 +30,8 @@ namespace MusicalChannels.Forms.ArtistForms
         private void EditArtistForm_Load(object sender, EventArgs e)
         {
             addArtistNameTextBox.Text = currArtist.Name;
+            addRichTextBox.Text = currArtist.Description;
+            addAgeTextBox.Text = currArtist.Age.ToString();
             try
             {
                 addPictureBox.Image = Image.FromFile(currArtist.ImageURL);
@@ -59,29 +61,58 @@ namespace MusicalChannels.Forms.ArtistForms
                 }
             }
         }
-
+        string newFileName = null;
         private void addSaveButton_Click(object sender, EventArgs e)
         {
-
-            if (insertButtonClicked)
+            int age = 0;
+            if (!int.TryParse(addAgeTextBox.Text, out age))
             {
-                string picsFile = SettingsReader.GetPicsURL() + @"\";
-                File.Copy(filePath, picsFile + imgName);
+                MessageBox.Show("Invalid Age");
             }
-
-
-            foreach (var item in DataService.GetArtists())
+            else if (age < 0 && age > 99)
             {
-                if (item.Name == currArtist.Name)
+                MessageBox.Show("Invalid Age");
+            }
+            else if (string.IsNullOrWhiteSpace(addArtistNameTextBox.Text))
+            {
+                MessageBox.Show("Invalid Name");
+            }
+            else
+            {
+                if (insertButtonClicked)
                 {
-                    item.Name = addArtistNameTextBox.Text;
-                    DataService.UpdateArtist(item);
+                    string picsFile = SettingsReader.GetPicsURL() + @"\";
+                    newFileName = picsFile + (int.Parse(new DirectoryInfo(picsFile).GetFiles("*.jpg").Count().ToString()) + 1).ToString() + ".jpg";
+
+                    File.Copy(filePath, newFileName);
                 }
+
+                
+                foreach (var item in DataService.GetArtists())
+                {
+                    if (item.Name == currArtist.Name)
+                    {
+                       
+                        item.Name = addArtistNameTextBox.Text;
+                        item.Description = addRichTextBox.Text;
+                        item.Age = int.Parse(addAgeTextBox.Text);
+                        //item.Song = 
+                        if (insertButtonClicked)
+                        {
+                            item.ImageURL = newFileName;
+                        }
+                        else
+                        {
+                            item.ImageURL = filePath;
+                        }
+                        DataService.UpdateArtist(item);
+                    }
+                }
+
+                MessageBox.Show("The artist is saved");
+
+                Redirect();
             }
-
-            MessageBox.Show("The artist is saved");
-
-            Redirect();
         }
 
         private void deleteButton_Click(object sender, EventArgs e)

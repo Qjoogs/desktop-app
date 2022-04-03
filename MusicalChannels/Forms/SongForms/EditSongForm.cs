@@ -31,11 +31,22 @@ namespace MusicalChannels.Forms
         private void EditSongForm_Load(object sender, EventArgs e)
         {
             var artist = DataService.GetArtists().Where(x => x.SongId == currSong.Id).FirstOrDefault();
-            addTextBox.Text = currSong.Name;
-            addArtistSongTextBox.Text = artist.Name;
-            monthCalendar1.SetDate(currSong.ReleaseDate);
-            addDurationTextBox.Text = currSong.Duration.ToString();
-            addChannelSongTextBox.Text = DataService.GetChannels().Where(x => x.SongId == currSong.Id).FirstOrDefault().Name;
+            var channel = DataService.GetChannels().Where(x => x.SongId == currSong.Id).FirstOrDefault();
+            if (channel != null || artist != null)
+            {
+                if (artist != null) addArtistSongTextBox.Text = artist.Name;
+                if (channel != null) addChannelSongTextBox.Text = channel.Name;
+                addTextBox.Text = currSong.Name;
+                monthCalendar1.SetDate(currSong.ReleaseDate);
+                addDurationTextBox.Text = currSong.Duration.ToString();
+
+            }
+            else
+            {
+                addTextBox.Text = currSong.Name;
+                monthCalendar1.SetDate(currSong.ReleaseDate);
+                addDurationTextBox.Text = currSong.Duration.ToString();
+            }
             try
             {
                 addPictureBox.Image = Image.FromFile(currSong.ImageURL);
@@ -72,23 +83,25 @@ namespace MusicalChannels.Forms
             song.ImageURL = filePath;
             song.Duration = addDurationTextBox.Text;
             song.ReleaseDate = monthCalendar1.SelectionRange.Start.Date;
-            
+
 
             var currArtist = DataService.GetArtists().Where(x => x.Name == addArtistSongTextBox.Text).FirstOrDefault();
             var currChannel = DataService.GetChannels().Where(x => x.Name == addChannelSongTextBox.Text).FirstOrDefault();
 
 
-            if (currArtist != null && currChannel!=null)
+            if (currArtist != null && currChannel != null)
             {
 
                 if (insertButtonClicked)
                 {
                     string picsFile = SettingsReader.GetPicsURL() + @"\";
-                    File.Copy(filePath, picsFile + imgName);
-                    song.ImageURL = picsFile + imgName;
+                    string newFileName = picsFile + (int.Parse(new DirectoryInfo(picsFile).GetFiles("*.jpg").Count().ToString()) + 1).ToString() + ".jpg";
+
+                    File.Copy(filePath, newFileName);
+                    song.ImageURL = newFileName;
                 }
 
-                
+
                 Artist artist = new Artist();
                 artist.Name = currArtist.Name;
                 artist.Age = currArtist.Age;
@@ -104,14 +117,14 @@ namespace MusicalChannels.Forms
 
                 song.Artists.Add(artist);
                 song.Channels.Add(channel);
-                
+
                 DataService.RemoveSong(currSong);
                 DataService.AddSong(song);
                 MessageBox.Show("The song is saved");
 
                 Redirect();
             }
-            else if(currArtist==null)
+            else if (currArtist == null)
             {
                 MessageBox.Show("The artist doesn't exists");
             }
@@ -120,7 +133,7 @@ namespace MusicalChannels.Forms
                 MessageBox.Show("The channel doesn't exists");
             }
 
-           
+
         }
 
         private void addDeleteButton_Click(object sender, EventArgs e)

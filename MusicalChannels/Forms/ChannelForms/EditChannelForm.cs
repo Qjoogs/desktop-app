@@ -58,13 +58,15 @@ namespace MusicalChannels.Forms.ChannelForms
                 }
             }
         }
-
+        string newFileName=null;
         private void addSaveButton_Click(object sender, EventArgs e)
         {
             if (insertButtonClicked)
             {
                 string picsFile = SettingsReader.GetPicsURL() + @"\";
-                File.Copy(filePath, picsFile + imgName);
+                newFileName = picsFile + (int.Parse(new DirectoryInfo(picsFile).GetFiles("*.jpg").Count().ToString()) + 1).ToString() + ".jpg";
+
+                File.Copy(filePath, newFileName);
             }
 
 
@@ -73,6 +75,14 @@ namespace MusicalChannels.Forms.ChannelForms
                 if (item.Name == currChannel.Name)
                 {
                     item.Name = addChannelNameTextBox.Text;
+                    if (insertButtonClicked)
+                    {
+                        item.ChannelLogo = newFileName;
+                    }
+                    else
+                    {
+                        item.ChannelLogo = filePath;
+                    }
                     DataService.UpdateChannel(item);
                 }
             }

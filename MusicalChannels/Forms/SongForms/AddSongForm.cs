@@ -78,9 +78,11 @@ namespace MusicalChannels.Forms
 
 
                 string picsFile = SettingsReader.GetPicsURL() + @"\";
+                string newFileName = picsFile + (int.Parse(new DirectoryInfo(picsFile).GetFiles("*.jpg").Count().ToString())+1).ToString()+".jpg";
 
-                File.Copy(filePath, picsFile + imgName);
-                song.ImageURL = picsFile + imgName;
+                File.Copy(filePath, newFileName);
+                
+                song.ImageURL = newFileName;
 
 
                 DataService.AddSong(song);
