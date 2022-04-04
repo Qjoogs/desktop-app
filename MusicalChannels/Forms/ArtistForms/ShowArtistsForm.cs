@@ -67,10 +67,25 @@ namespace MusicalChannels.Forms.ArtistForms
             }
         }
 
+        private void LoadArtistData()
+        {
+            using (DBContext context = new DBContext())
+            {
+                var findArtist = DataService.GetArtists().Where(x => x.Name == control.ChannelName).FirstOrDefault();
+                var artistDescription = new ArtistInfoUserControl();
+                artistDescription.ArtistNameLabel = findArtist.Name;
+                artistDescription.ArtistAgeLabel = findArtist.Age.ToString();
+                artistDescription.ArtistDescriptionLabel = findArtist.Description;
+                artistDescription.PictureBox = findArtist.ImageURL;
+                flowLayoutPanel1.Controls.Add(artistDescription);
+            }
+        }
+
         private void ClickedChannel(object sender, EventArgs e)
         {
             control = (ChannelsUserControl)sender;
             flowLayoutPanel1.Controls.Clear();
+            LoadArtistData();
             LoadSongs();
         }
 

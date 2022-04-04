@@ -250,6 +250,12 @@
     <Compile Include="Forms\SongForms\ShowSongsForm.Designer.cs">
       <DependentUpon>ShowSongsForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\UserControls\ArtistInfoUserControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\UserControls\ArtistInfoUserControl.Designer.cs">
+      <DependentUpon>ArtistInfoUserControl.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\UserControls\ChannelsUserControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -331,6 +337,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\SongForms\ShowSongsForm.resx">
       <DependentUpon>ShowSongsForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\UserControls\ArtistInfoUserControl.resx">
+      <DependentUpon>ArtistInfoUserControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\UserControls\ChannelsUserControl.resx">
       <DependentUpon>ChannelsUserControl.cs</DependentUpon>

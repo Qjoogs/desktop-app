@@ -108,3 +108,4 @@ C:\Users\yavor\source\repos\Channels\MusicalChannels\obj\Debug\MusicalChannels.F
 C:\Users\yavor\source\repos\Channels\MusicalChannels\obj\Debug\MusicalChannels.Forms.ArtistForms.ShowArtistsAdminForm.resources
 C:\Users\yavor\source\repos\Channels\MusicalChannels\obj\Debug\MusicalChannels.Forms.UserControls.UsersAdminUserControl.resources
 C:\Users\yavor\source\repos\Channels\MusicalChannels\obj\Debug\MusicalChannels.Forms.UserForms.ShowUserAdminForm.resources
+C:\Users\yavor\source\repos\Channels\MusicalChannels\obj\Debug\MusicalChannels.Forms.UserControls.ArtistInfoUserControl.resources
